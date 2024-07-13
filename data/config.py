@@ -55,7 +55,6 @@ COCO_LABEL_MAP = { 1:  1,  2:  2,  3:  3,  4:  4,  5:  5,  6:  6,  7:  7,  8:  8
                   82: 73, 84: 74, 85: 75, 86: 76, 87: 77, 88: 78, 89: 79, 90: 80}
 
 
-
 # ----------------------- CONFIG CLASS ----------------------- #
 
 class Config(object):
@@ -107,14 +106,20 @@ class Config(object):
 
 dataset_base = Config({
     'name': 'Base Dataset',
-
+    
     # Training images and annotations
-    'train_images': './data/coco/images/',
-    'train_info':   'path_to_annotation_file',
+    #'train_images': 'E:/Gallery/coco/2017/train2017/',
+    'train_images': './data/coco/2017/train2017/',
+    #'train_info':   'path_to_annotation_file',
+    #'train_info':   'E:/Gallery/coco/2017/annotations/',
+    'train_info':   './data/coco/2017/annotations/',
 
     # Validation images and annotations.
-    'valid_images': './data/coco/images/',
-    'valid_info':   'path_to_annotation_file',
+    #'valid_images': 'E:/Gallery/coco/2017/val2017/',
+    'valid_images': './data/coco/2017/val2017/',
+    #'valid_info':   'E:/Gallery/coco/2017/annotations/',
+    'valid_info':   './data/coco/2017/annotations/',
+
 
     # Whether or not to load GT. If this is False, eval.py quantitative evaluation won't work.
     'has_gt': True,
@@ -128,24 +133,27 @@ dataset_base = Config({
     'label_map': None
 })
 
+"""
 coco2014_dataset = dataset_base.copy({
     'name': 'COCO 2014',
     
-    'train_info': './data/coco/annotations/instances_train2014.json',
-    'valid_info': './data/coco/annotations/instances_val2014.json',
+    'train_info': 'E:/Gallery/coco/2017/annotations/instances_train2014.json',
+    'valid_info': 'E:/Gallery/coco/2017/annotations/instances_val2014.json',
 
     'label_map': COCO_LABEL_MAP
 })
+"""
 
 coco2017_dataset = dataset_base.copy({
     'name': 'COCO 2017',
     
-    'train_info': './data/coco/annotations/instances_train2017.json',
-    'valid_info': './data/coco/annotations/instances_val2017.json',
+    'train_info': './data/coco/2017/annotations/instances_train2017.json',
+    'valid_info': './data/coco/2017/annotations/instances_val2017.json',
 
     'label_map': COCO_LABEL_MAP
 })
 
+"""
 coco2017_testdev_dataset = dataset_base.copy({
     'name': 'COCO 2017 Test-Dev',
 
@@ -153,6 +161,82 @@ coco2017_testdev_dataset = dataset_base.copy({
     'has_gt': False,
 
     'label_map': COCO_LABEL_MAP
+})
+"""
+
+# ----------------------- Dataset for Safety ----------------------- #
+#45 classes    
+"""       
+SAFETY_CLASSES = ["안전밸트 착용", "안전밸트 미착용", "안전고리 결착", "안전고리 미결착", "안전화 착용", "안전화 미착용", "안전모 착용", "안전모 미착용"]
+"""
+
+SAFETY_CLASSES = ['Belt on', 'Belt off', 'Hook on', 'Hook off', 'Shoes on', 'Shoes off', 'Helmet on', 'Helmet off',
+              'Fork lane', 'Payloader', 'Forklift', 'Dump truck', 'Remicon', 'Pump car',
+              'Pile driver', 'Truck', 'Aerial workbench', 'Tower crane', 'Aerial work platform car', 'Gang form',
+              'Al form', 'A-type ladder', 'Uma', 'ELB', 'Opening cover', 'Dangerous goods storage',
+              'Elevator fall arrester', 'Hoist', 'Jack support', 'Steal pipe scaffolding', 'System scaffolding', 'Cement brick',
+              'Hammer', 'Electric drill', 'Remital', 'Stucco block', 'Mixer', 'H beam', 'High speed cutting machine',
+              'Vibrator', 'Fire extinguisher', 'Welding machine', 'Hand grinder', 'Hand car', 'Anti-burn'
+              ]              
+
+#SAFETY_LABEL_MAP = { 1:  1,  2:  2,  3:  3,  4:  4,  5:  5,  6:  6,  7:  7,  8:  8}
+                   
+safety_dataset = dataset_base.copy({
+    'name': 'SAFETY 2020',
+    'train_images': 'G:/Safety_DB_A/training/',
+    'train_info': 'G:/Safety_DB_A/training/annotations/annotations.json',
+    'valid_images': 'G:/Safety_DB_A/validata/',
+    'valid_info':   'G:/Safety_DB_A/validate/annotations/annotations.json',
+
+    'class_names': SAFETY_CLASSES,
+    #'label_map': SAFETY_LABEL_MAP
+})
+# ------------------------------------------------------------------ #
+
+'''
+# ----------------------- Dataset for Smoke ----------------------- #
+#10 classes 
+"""
+SMOKE_CLASSES = ('검정색 연기 발생', '회색 연기 발생', '흰색 연기 발생', 
+                '화재 발생', '구름', '안개',
+                '조명', '햇빛', '흔들림A', 
+                '흔들림B', '무관씬'                
+                )                
+"""
+
+SMOKE_CLASSES = ('Black smoke', 'Gray smoke', 'White smoke', 'Fire', 'Cloud', 'Fog', 'Light', 'Sunlight', 'ShakeA', 'ShakeB', 'None')
+
+SMOKE_LABEL_MAP = { 1:  1,  2:  2,  3:  3,  4:  4,  5:  5,  6:  6,  7:  7,  8:  8,
+                   9:  9, 10: 10}
+                   
+smoke_dataset = dataset_base.copy({
+    'name': 'SMOKE 2020',
+    'train_images': 'G:/Fire_DB_A/training/',
+    'train_info': 'G:/Fire_DB_A/training/annotations.json',
+    'valid_images': 'G:/Fire_DB_A/validata/',
+    'valid_info':   'G:/Fire_DB_A/validata/annotations.json',
+    'class_names': SMOKE_CLASSES,
+    'label_map': SMOKE_LABEL_MAP
+})'''
+# ------------------------------------------------------------------ #
+
+OBJECTS_CLASSES = ('chair', 'person', 'bottle', 
+                'sofa', 'bus', 'car',
+                '__ignore__', 'unknown' 
+                )    
+
+objects_dataset = dataset_base.copy({
+    'name': 'OBJECTS 2020',
+    
+    'train_images': './data/OBJECTS/',
+    'train_info': './data/OBJECTS/annotations.json',
+
+    'valid_images': './data/OBJECTS/',
+    'valid_info':   './data/OBJECTS/annotations_val.json',
+
+    'class_names': OBJECTS_CLASSES,
+
+    #'label_map': OBJECTS_LABEL_MAP
 })
 
 PASCAL_CLASSES = ("aeroplane", "bicycle", "bird", "boat", "bottle",
@@ -171,9 +255,6 @@ pascal_sbd_dataset = dataset_base.copy({
 
     'class_names': PASCAL_CLASSES,
 })
-
-
-
 
 
 # ----------------------- TRANSFORMS ----------------------- #
@@ -200,10 +281,6 @@ darknet_transform = Config({
     'subtract_means': False,
     'to_float': True,
 })
-
-
-
-
 
 # ----------------------- BACKBONES ----------------------- #
 
@@ -298,10 +375,6 @@ vgg16_backbone = backbone_base.copy({
     'pred_aspect_ratios': [ [[1], [1, sqrt(2), 1/sqrt(2), sqrt(3), 1/sqrt(3)][:n]] for n in [3, 5, 5, 5, 3, 3] ],
 })
 
-
-
-
-
 # ----------------------- MASK BRANCH TYPES ----------------------- #
 
 mask_type = Config({
@@ -378,10 +451,6 @@ activation_func = Config({
     'none':    lambda x: x,
 })
 
-
-
-
-
 # ----------------------- FPN DEFAULTS ----------------------- #
 
 fpn_base = Config({
@@ -409,16 +478,17 @@ fpn_base = Config({
 })
 
 
-
-
-
 # ----------------------- CONFIG DEFAULTS ----------------------- #
 
+#Original
 coco_base_config = Config({
-    'dataset': coco2014_dataset,
+    #'dataset': coco2014_dataset,
+    'dataset': coco2017_dataset,
     'num_classes': 81, # This should include the background class
 
-    'max_iter': 400000,
+    #'max_iter': 400000,
+    #'max_iter': 6000,
+    'max_iter': 100000,
 
     # The maximum number of detections for evaluation
     'max_num_detections': 100,
@@ -430,8 +500,11 @@ coco_base_config = Config({
 
     # For each lr step, what to multiply the lr with
     'gamma': 0.1,
-    'lr_steps': (280000, 360000, 400000),
-
+    #'lr_steps': (280000, 360000, 400000),
+    #'lr_steps': (3000, 4000, 5000),
+    #'lr_steps': (3000, 6000, 8000, 10000),
+    'lr_steps': (30000, 60000, 80000, 100000),
+    
     # Initial learning rate to linearly warmup from (if until > 0)
     'lr_warmup_init': 1e-4,
 
@@ -581,7 +654,8 @@ coco_base_config = Config({
     'mask_dim': None,
 
     # Input image size.
-    'max_size': 300,
+    #'max_size': 300,
+    'max_size': 550,
     
     # Whether or not to do post processing on the cpu at test time
     'force_cpu_nms': True,
@@ -647,13 +721,11 @@ coco_base_config = Config({
     'maskious_to_train': -1,
 })
 
-
-
-
-
 # ----------------------- YOLACT v1.0 CONFIGS ----------------------- #
 
-yolact_base_config = coco_base_config.copy({
+yolact_base_config = coco_base_config.copy({  #original
+#yolact_base_config = res101_coco_config.copy({
+    
     'name': 'yolact_base',
 
     # Dataset stuff
@@ -662,16 +734,23 @@ yolact_base_config = coco_base_config.copy({
 
     # Image Size
     'max_size': 550,
+    #'max_size': 700,
     
     # Training params
-    'lr_steps': (280000, 600000, 700000, 750000),
-    'max_iter': 800000,
-    
+    'lr_warmup_init': 1e-6,
+    'lr_warmup_until': 1000,
+    'lr': 5e-4,
+    'lr_steps': (100000, 150000, 175000),
+    'max_iter': 200000,
+
+    'use_amp' : True,  #20201201 added
+
     # Backbone Settings
     'backbone': resnet101_backbone.copy({
         'selected_layers': list(range(1, 4)),
         'use_pixel_scales': True,
         'preapply_sqrt': False,
+        'freeze_bn': True,  #newerly added cause of inf
         'use_square_anchors': True, # This is for backward compatability with a bug
 
         'pred_aspect_ratios': [ [[1, 1/2, 2]] ]*5,
@@ -750,6 +829,20 @@ yolact_resnet50_config = yolact_base_config.copy({
     }),
 })
 
+yolact_resnet101_config = yolact_base_config.copy({
+    'name': 'yolact_resnet50',
+
+    'backbone': resnet101_backbone.copy({
+        'selected_layers': list(range(1, 4)),
+        
+        'pred_scales': yolact_base_config.backbone.pred_scales,
+        'pred_aspect_ratios': yolact_base_config.backbone.pred_aspect_ratios,
+        'use_pixel_scales': True,
+        'preapply_sqrt': False,
+        'use_square_anchors': True, # This is for backward compatability with a bug
+    }),
+})
+
 
 yolact_resnet50_pascal_config = yolact_resnet50_config.copy({
     'name': None, # Will default to yolact_resnet50_pascal
@@ -766,6 +859,122 @@ yolact_resnet50_pascal_config = yolact_resnet50_config.copy({
         'use_square_anchors': False,
     })
 })
+
+# ----------------------- Configuration for Safety ----------------------- #
+yolact_resnet50_safety_config = yolact_resnet50_config.copy({
+    'name': None, # Will default to yolact_resnet50_pascal
+    
+    # Dataset stuff
+    'dataset': safety_dataset,
+    'num_classes': len(safety_dataset.class_names) + 1,
+
+    # Training params
+    'lr_warmup_init': 1e-6,
+    'lr_warmup_until': 1000,
+    'lr': 5e-4,
+    'lr_steps': (100000, 150000, 175000),
+    'max_iter': 200000,
+
+    'backbone': yolact_resnet50_config.backbone.copy({
+        'pred_scales': [[32], [64], [128], [256], [512]],
+        'use_square_anchors': False,
+    })
+})
+
+yolact_resnet101_safety_config = yolact_resnet101_config.copy({
+    'name': None, # Will default to yolact_resnet50_pascal
+    
+    # Dataset stuff
+    'dataset': safety_dataset,
+    'num_classes': len(safety_dataset.class_names) + 1,
+
+    # Training params
+    'lr_warmup_init': 1e-6,
+    'lr_warmup_until': 1000,
+    'lr': 5e-4,
+    'lr_steps': (100000, 150000, 175000),
+    'max_iter': 200000,
+
+    'backbone': yolact_resnet50_config.backbone.copy({
+        'pred_scales': [[32], [64], [128], [256], [512]],
+        'use_square_anchors': False,
+    })
+})
+
+# ----------------------------------------------------------------------- #
+'''
+# ----------------------- Configuration for Smoke ----------------------- #
+yolact_resnet50_smoke_config = yolact_resnet50_config.copy({
+    'name': None, # Will default to yolact_resnet50_pascal
+    
+    # Dataset stuff
+    'dataset': smoke_dataset,
+    'num_classes': len(smoke_dataset.class_names) + 1,
+
+    # Training params
+    #'lr_warmup_init': 1e-6,
+    #'lr_warmup_until': 1000,
+    #'lr': 5e-4,
+     'lr_warmup_init': 1e-6,
+    'lr_warmup_until': 1000,
+    'lr': 5e-4,
+
+    'max_iter': 200000,
+    ##'lr_steps': (60000, 100000),
+    'lr_steps': (30000, 60000, 80000, 100000, 150000, 200000),
+    
+
+    'backbone': yolact_resnet50_config.backbone.copy({
+        'pred_scales': [[32], [64], [128], [256], [512]],
+        'use_square_anchors': False,
+    })
+})
+
+yolact_resnet101_smoke_config = yolact_resnet101_config.copy({
+    'name': None, # Will default to yolact_resnet50_pascal
+    
+    # Dataset stuff
+    'dataset': smoke_dataset,
+    'num_classes': len(smoke_dataset.class_names) + 1,
+
+    # Training params
+    #'lr_warmup_init': 1e-6,
+    #'lr_warmup_until': 1000,
+    #'lr': 5e-4,
+    'lr_warmup_init': 1e-6,
+    'lr_warmup_until': 1000,
+    'lr': 5e-4,
+
+    'max_iter': 200000,
+    'lr_steps': (30000, 60000, 80000, 100000, 150000, 200000),
+
+
+    'backbone': yolact_resnet50_config.backbone.copy({
+        'pred_scales': [[32], [64], [128], [256], [512]],
+        'use_square_anchors': False,
+    })
+})
+
+
+# ----------------------------------------------------------------------- #
+'''
+# ----------------------- Configuration for OBJECTS ----------------------- #
+yolact_resnet50_objects_config = yolact_resnet50_config.copy({
+    'name': None, # Will default to yolact_resnet50_pascal
+    
+    # Dataset stuff
+    'dataset': objects_dataset,
+    'num_classes': len(objects_dataset.class_names) + 1,
+
+    'max_iter': 120000,
+    'lr_steps': (60000, 100000),
+    
+    'backbone': yolact_resnet50_config.backbone.copy({
+        'pred_scales': [[32], [64], [128], [256], [512]],
+        'use_square_anchors': False,
+    })
+})
+# ----------------------------------------------------------------------- #
 
 # ----------------------- YOLACT++ CONFIGS ----------------------- #
 

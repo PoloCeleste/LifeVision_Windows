@@ -1,0 +1,54 @@
+Belt on
+Belt off
+Hook on
+Hook off
+Shoes on
+Shoes off
+Helmet on
+Helmet off
+Fork lane
+Payloader
+Forklift
+Dump truck
+Remicon
+Pump car
+Pile driver
+Truck
+Aerial workbench
+Tower crane
+Aerial work platform car
+Gang form
+Al form
+A-type ladder
+Uma
+ELB
+Opening cover
+Dangerous goods storage
+Elevator fall arrester
+Hoist
+Jack support
+Steal pipe scaffolding
+System scaffolding
+Cement brick
+Hammer
+Electric drill
+Remital
+Stucco block
+Mixer
+H beam
+High speed cutting machine
+Vibrator
+Fire extinguisher
+Welding machine
+Hand grinder
+Hand car
+Anti-burn
+
+
+
+
+
+
+
+
+
