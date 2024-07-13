@@ -12,9 +12,13 @@
 <br><br>
 
 - 구동시 필수
-  - Python 3.9 ~
-  - JDK 19 or 17
+  - Python 3.9 ~ (구현 시 3.9.6과 3.11.8 사용)
+  - JDK 19 (or 17)
   - Java로 제작된 안전장구류 착용법은 [Font](/JavaFont) 설치 요망
+  - Nvidia CUDA, Pytorch 설치
+  - pip패키지 ; numpy, OpenCV/Contrib, pyserial, matplotlib, schedule, pygame, cython, pillow, GitPython, termcolor, tensorboard, PyQt5, firebase-admin 등
+  - 웹캠, 센서부, Firebase DB 연동
+  - Nvidia GPU
 
 <br><br>
 [1학기 시연 영상](https://www.youtube.com/watch?v=SbFfPqBx5S4) <br>
